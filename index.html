@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png"/>
+</head>
+<body>
+    <div class="hero">
+        <video autoplay muted loop class="bg">
+            <source src="bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="container">
+        <form class="calculator" name="calc">
+            <input type="text" readonly class="value" name="txt"/>
+            <span class="num clear" onclick="clearDisplay()">AC</span>
+            <span class="num" onclick="clearLast()">DE</span>
+            <span class="num operator division" onclick="appendOperator('/')">/</span>
+            <span class="num operator multiplication" onclick="appendOperator('*')">*</span>
+            <span class="num" onclick="appendNumber('7')">7</span>
+            <span class="num" onclick="appendNumber('8')">8</span>
+            <span class="num" onclick="appendNumber('9')">9</span>
+            <span class="num operator minus" onclick="appendOperator('-')">-</span>
+            <span class="num" onclick="appendNumber('4')">4</span>
+            <span class="num" onclick="appendNumber('5')">5</span>
+            <span class="num" onclick="appendNumber('6')">6</span>
+            <span class="num operator plus" onclick="appendOperator('+')">+</span>
+            <span class="num" onclick="appendNumber('1')">1</span>
+            <span class="num" onclick="appendNumber('2')">2</span>
+            <span class="num" onclick="appendNumber('3')">3</span>
+            <span class="num" onclick="appendNumber('0')">0</span>
+            <span class="num" onclick="appendNumber('00')">00</span>
+            <span class="num" onclick="appendDecimal()">.</span>
+            <span class="num equal" onclick="calculate()">=</span>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script type="text/javascript">
+        // Initialize VanillaTilt
+        VanillaTilt.init(document.querySelector(".container"), {
+            max: 15,
+            speed: 400,
+            glare: false,
+            "max-glare": 0.01,
+        });
+
+        // Append a number to the display
+        function appendNumber(number) {
+            const display = document.calc.txt;
+            display.value += number;
+        }
+
+        // Append an operator to the display
+        function appendOperator(operator) {
+            const display = document.calc.txt;
+            const lastChar = display.value.slice(-1);
+
+            // Prevent operators from being entered as the first character or consecutively
+            if (display.value.length === 0 && operator === '-') {
+                display.value += operator;
+                return;
+            }
+
+            if (['+', '-', '*', '/'].includes(lastChar)) {
+                display.value = display.value.slice(0, -1) + operator;
+            } else if (display.value.length > 0) {
+                display.value += operator;
+            }
+        }
+
+        // Append a decimal point
+        function appendDecimal() {
+            const display = document.calc.txt;
+            const lastNumber = display.value.split(/[\+\-\*\/]/).pop();
+
+            // Prevent multiple decimal points in a number
+            if (!lastNumber.includes('.')) {
+                display.value += '.';
+            }
+        }
+
+        // Clear the display
+        function clearDisplay() {
+            document.calc.txt.value = '';
+        }
+
+        // Clear the last character
+        function clearLast() {
+            const display = document.calc.txt;
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Calculate the result
+        function calculate() {
+            const display = document.calc.txt;
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>

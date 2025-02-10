@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300&family=Libre+Baskerville:wght@400;700&family=Manjari:wght@100;400;700&family=Martel+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --color-1: #001539;
+    --color-2: #004F7F;
+    --color-3: #C9F6D2;
+    --color-4: #E3F8D2;
+    --color-5: #2C2730;
+    --color-6: #5C6A6F;
+    --color-7: #2F4F56;
+    --color-8: #517F86;
+    --color-9: #81AEA5;
+    --color-danger: rgb(199, 27, 27); 
+    --color-danger-variant: rgba(199, 27, 27, 0.4) ;
+    --color-white: white;
+    --color-light: ;
+    --color-dark: #040712;
+    --color-bg: #040712;
+    --color-bg1: #CCD5AE;
+    --color-bg2: ;
+
+    --container-width-lg: 70%;
+    --container-width-mg: 90%;
+    --container-width-sm: 94%;
+
+    --transition: all 400ms ease
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.bg{
+    position: absolute;
+    right: 0;
+    bottom:0 ;
+   
+} 
+
+
+
+@media (min-aspect-ratio: 16/9){
+    .bg{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio: 16/9){
+    .bg{
+        width: auto;
+        height: 100%;
+    }
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    color: rgb(255, 255, 255);
+    background-image:url('bg.gif');
+    background-size:100%;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    height:100%;
+    width:100%;
+}
+
+/*body::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#e91e63,#ffc107);
+    clip-path: circle(22% at 30% 20%);
+} 
+
+
+body::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#ffffff,#2b382e);
+    clip-path: circle(20% at 70% 90%); */
+
+
+.container{
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    border-left: 1px solid rgba(255, 255, 255, 0.02);
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.02);
+}
+
+.container .calculator{
+    position: relative;
+    display: grid;
+}
+
+.container .calculator .value{
+    grid-column: span 4;
+    height: 140px;
+    width: 300px;
+    text-align: right;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 30px;
+    background: transparent;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container .calculator span{
+    display: grid;
+    place-items: center;
+    height: 75px;
+    width: 75px;
+    color: #ffffff;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    border-bottom: 0.1px solid rgba(255, 255, 255, 0.05);
+    border-right: 0.1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.5s;
+}
+
+.container .calculator span:hover{
+    transition: 0;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.container .calculator span:active{
+    background: var(--color-danger-variant);
+    color: #001539;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+/*.container .calculator .clear{
+    grid-column: span 2;
+    width: 150px;
+    background: rgba(255, 255, 255, 0.05);
+}*/
+
+.container .calculator .plus{
+    grid-row: span 2;
+    height: 150px;
+}
+
+.container .calculator .equal{
+    background: rgba(255, 255, 255, 0.05);
+}
