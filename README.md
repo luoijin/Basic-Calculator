@@ -68,9 +68,6 @@ Commit your changes (git commit -m 'Add some AmazingFeature')
 Push to the branch (git push origin feature/AmazingFeature)
 Open a Pull Request
 
-__License__
-This project is open source and available under the MIT License.
-
 __Acknowledgments__
 Original creator: luoijin (2023)
 Vanilla-tilt.js for the smooth tilt effects
